@@ -1,11 +1,19 @@
-<div>
-  <%= image_tag @book.get_image %>
+<div class="container">
+<div class="row">
+  <div class="col-md-3" style="background-color: orange;">
+    <%= render 'books/list', user: @user, book: @book %>
+<!-- 部分テンプレートコード位置 -->
+</div>
+ <div class="col-md-8 offset-md-1">
+   <h2>Book detail</h2>
+   <%= image_tag @user.get_profile_image(100,100) %>
   <p>title：<%= @book.title %></p>
   <p>body：<%= @book.body %></p>
-  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
   <p>ユーザーネーム：<%= @book.user.name %></p>
-  <p>投稿日時：<%= @book.created_at.strftime('%Y/%m/%d') %></p>
+  <%= link_to "編集", edit_book_path(@book.id) %>
    <% if @book.user == current_user %>
   <%= link_to "削除", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
     <% end %>
+</div>
+</div>
 </div>

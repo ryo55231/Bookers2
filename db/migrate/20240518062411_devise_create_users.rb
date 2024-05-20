@@ -33,6 +33,7 @@ t.datetime :remember_created_at
 
 
 t.string :name
+t.string :introduction
 t.timestamps null: false
 end
 
