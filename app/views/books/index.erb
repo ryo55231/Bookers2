@@ -2,13 +2,22 @@
   <div class="row">
 
     <div class="col-md-3" style="background-color: orange;">
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this obj from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+      
 
-      <!-- 部分テンプレートコードがここに入る -->
+      <!-- 部分テンプレートコード -->
 <%= render 'books/list', user: @user, book: @book %>
 
 
 
-    </div>
+</div>
     
     
  <div class="col-md-8 offset-md-1">

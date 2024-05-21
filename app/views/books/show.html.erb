@@ -10,9 +10,10 @@
   <p>title：<%= @book.title %></p>
   <p>body：<%= @book.body %></p>
   <p>ユーザーネーム：<%= @book.user.name %></p>
-  <%= link_to "編集", edit_book_path(@book.id) %>
    <% if @book.user == current_user %>
-  <%= link_to "削除", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  <%= link_to "編集", edit_book_path(@book.id) ,class: "btn btn-success"  %>
+
+  <%= link_to "削除", book_path(@book.id) ,class: "btn btn-danger" , method: :delete, "data-confirm" => "本当に削除しますか？" %>
     <% end %>
 </div>
 </div>
