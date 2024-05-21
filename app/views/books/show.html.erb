@@ -6,15 +6,22 @@
 </div>
  <div class="col-md-8 offset-md-1">
    <h2>Book detail</h2>
-   <%= image_tag @user.get_profile_image(100,100) %>
-  <p>title：<%= @book.title %></p>
-  <p>body：<%= @book.body %></p>
-  <p>ユーザーネーム：<%= @book.user.name %></p>
-   <% if @book.user == current_user %>
-  <%= link_to "編集", edit_book_path(@book.id) ,class: "btn btn-success"  %>
+    <table>
+  <td> <%= link_to user_path(current_user.id) do %>
+   <%= image_tag  @user.profile_image,size: "100x100" %><!-- ユーザープロフ画像 -->
+  <%= @book.user.name %></td> 
+  <% end %>
+  <td width="100"><%= @book.title %></td> 
+  <td width="100"><%= @book.body %></td> 
 
-  <%= link_to "削除", book_path(@book.id) ,class: "btn btn-danger" , method: :delete, "data-confirm" => "本当に削除しますか？" %>
-    <% end %>
+   <% if @book.user == current_user %>
+   <td><%= link_to "Edit", edit_book_path(@book.id) ,class: "btn btn-success"  %> </td> 
+
+   <td><%= link_to "destroy", book_path(@book.id) ,class: "btn btn-danger" , method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    </td> <% end %>
+   
+     </tr>
+  </table>
 </div>
 </div>
 </div>

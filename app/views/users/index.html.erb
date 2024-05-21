@@ -8,7 +8,7 @@
      <div class="col-md-8 offset-md-1">
 <h1>Users</h1>
 
- <table>
+ <table class="table table-striped">
     <tr>
     <th>image</th>
 　　<th>name</th>
@@ -17,8 +17,9 @@
 
 <% @users.each do |user| %>
 <tr>
-  <td><%= image_tag @user.get_profile_image(100,100) %></td>
+  <td><%= image_tag  @user.profile_image,size: "100x100" %><!-- ユーザープロフ画像 --></td>
   <td><%= user.name %></td>
+  <td><%= link_to "show", user_path(current_user.id) %></td>
   </tr>
   <% end %>
   </table>
