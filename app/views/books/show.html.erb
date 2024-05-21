@@ -8,7 +8,7 @@
    <h2>Book detail</h2>
     <table>
   <td> <%= link_to user_path(current_user.id) do %>
-   <%= image_tag  @user.profile_image,size: "100x100" %><!-- ユーザープロフ画像 -->
+ <%= image_tag @book.user.get_profile_image(100,100) %><!-- ユーザープロフ画像 -->
   <%= @book.user.name %></td> 
   <% end %>
   <td width="100"><%= @book.title %></td> 
