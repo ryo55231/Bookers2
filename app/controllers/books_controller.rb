@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+
   def new
     @book = Book.new
   end
@@ -10,7 +11,7 @@ class BooksController < ApplicationController
     if @book.save
     flash[:notice] = "You have created book successfully."
 
-    redirect_to users_path(@book.id)
+    redirect_to book_path(@book.id)
     else
     @books = Book.all
     render :index
@@ -25,26 +26,21 @@ class BooksController < ApplicationController
 
   def show
   @book = Book.find(params[:id])
-  @user = current_user
+  @user = @book.user
   end
 
   def edit
-  # ここから追加
   @book = Book.find(params[:id])
+  # ここからユーザー制御
+   user = @book.user
   unless user.id == current_user.id
     redirect_to books_path
   end
   # ここまで追加
-  @book = Book.find(params[:id])
   end
 
   def update
-  # ここから追加
-  @bokk = Book.find(params[:id])
-  unless user.id == current_user.id
-    redirect_to books_path
-  end
-  # ここまで追加
+
     @book = Book.find(params[:id])
     if @book.update(book_params)
     flash[:notice] = "You have updated book successfully."
@@ -57,16 +53,16 @@ class BooksController < ApplicationController
   def destroy
     book = Book.find(params[:id])
     book.destroy
-    redirect_to '/books'
+    redirect_to "/books"
   end
   private
 
   def book_params
 params.require(:book).permit(:title, :body, )
   end
-    # ここから追加
+    # ここからユーザー
   def is_matching_login_user
-    @book = Book.find(params[:id])
+    user = User.find(params[:id])
     unless user.id == current_user.id
       redirect_to books_path
     end

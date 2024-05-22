@@ -7,19 +7,19 @@
  <div class="col-md-8 offset-md-1">
    <h2>Book detail</h2>
     <table>
-  <td> <%= link_to user_path(current_user.id) do %>
+  <td> <%= link_to user_path(@user.id) do %>
  <%= image_tag @book.user.get_profile_image(100,100) %><!-- ユーザープロフ画像 -->
-  <%= @book.user.name %></td> 
+  <%= @book.user.name %></td>
   <% end %>
-  <td width="100"><%= @book.title %></td> 
-  <td width="100"><%= @book.body %></td> 
+  <td width="100"><%= @book.title %></td>
+  <td width="100"><%= @book.body %></td>
 
    <% if @book.user == current_user %>
-   <td><%= link_to "Edit", edit_book_path(@book.id) ,class: "btn btn-success"  %> </td> 
+   <td><%= link_to "Edit", edit_book_path(@book.id) ,class: "btn btn-success"  %> </td>
 
-   <td><%= link_to "destroy", book_path(@book.id) ,class: "btn btn-danger" , method: :delete, "data-confirm" => "本当に削除しますか？" %>
+   <td><%= link_to "Destroy", book_path(@book.id) ,class: "btn btn-danger" , method: :delete, "data-confirm" => "本当に削除しますか？" %>
     </td> <% end %>
-   
+
      </tr>
   </table>
 </div>
